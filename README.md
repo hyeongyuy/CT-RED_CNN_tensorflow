@@ -5,7 +5,7 @@ Low-Dose CT with a Residual Encoder-Decoder Convolutional Neural Network (RED-CN
 ## I/O (DICOM file -> .npy)
 * Input data Directory  
   * DICOM file extension = [<b>'.IMA'</b>, '.dcm']
-> $ os.path.join(dcm_path, patent_no, [LDCT_path|NDCT_path], '*.' + extension)
+> $ os.path.join(dcm_path, patient_no, [LDCT_path|NDCT_path], '*.' + extension)
 ## Network architecture  
 ![Network architecture](https://github.com/hyeongyuy/CT-RED_CNN_tensorflow/blob/master/img/architecture.JPG)  
 * 10 layers (5 conv  + 5 deconv)
@@ -29,6 +29,7 @@ Low-Dose CT with a Residual Encoder-Decoder Convolutional Neural Network (RED-CN
 > * dcm_path : dicom file directory
 > * LDCT_path : LDCT image folder name
 > * NDCT_path : NDCT image folder name
+> * test_patient_no : test patient id list(p_id1,p_id2...) (train patient id : (patient id list - test patient id list)
 > * checkpoint_dir : save directory - trained model
 > * test_npy_save_dir : save directory - test numpy file
 > * pretrained_vgg : pretrained vggnet directory

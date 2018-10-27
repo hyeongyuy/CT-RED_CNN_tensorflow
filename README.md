@@ -7,7 +7,7 @@ Low-Dose CT with a Residual Encoder-Decoder Convolutional Neural Network (RED-CN
   * DICOM file extension = [<b>'.IMA'</b>, '.dcm']
 > $ os.path.join(dcm_path, patent_no, [LDCT_path|NDCT_path], '*.' + extension)
 ## Network architecture  
-![Network architecture](https://github.com/hyeongyuy/CT-RED_CNN_tensorflow/blob/master/RED_CNN/img/architecture.JPG)  
+![Network architecture](https://github.com/hyeongyuy/CT-RED_CNN_tensorflow/blob/master/img/architecture.JPG)  
 * 10 layers (5 conv  + 5 deconv)
 * shortcut
 * remove pooling operation

@@ -19,11 +19,11 @@ class redCNN(object):
         self.sess = sess    
         
         ####patients folder name
-        self.train_patient_no = [d.split('/')[-1] for d in glob(args.dcm_path + '/*') if ('zip' not in d) & (d.split('/')[-1] not in args.test_patient_no)]     
-        self.test_patient_no = args.test_patient_no    
+        self.train_patent_no = [d.split('/')[-1] for d in glob(args.dcm_path + '/*') if ('zip' not in d) & (d.split('/')[-1] not in args.test_patient_no)]     
+        self.test_patent_no = args.test_patient_no    
 
         #save directory
-        self.p_info = '_'.join(self.test_patient_no)
+        self.p_info = '_'.join(self.test_patent_no)
         self.checkpoint_dir = os.path.join('.', args.checkpoint_dir, self.p_info)
         self.log_dir = os.path.join('.', 'logs',  self.p_info)
         print('directory check!!\ncheckpoint : {}\ntensorboard_logs : {}'.format(self.checkpoint_dir, self.log_dir))
@@ -46,12 +46,12 @@ class redCNN(object):
 
         t1 = time.time()
         if args.phase == 'train':
-            self.image_loader(self.train_patient_no)
-            self.test_image_loader(self.test_patient_no)
+            self.image_loader(self.train_patent_no)
+            self.test_image_loader(self.test_patent_no)
             print('data load complete !!!, {}\nN_train : {}, N_test : {}'.format(time.time() - t1, len(self.image_loader.LDCT_image_name), len(self.test_image_loader.LDCT_image_name)))
             [self.X, self.Y] = self.image_loader.input_pipeline(self.sess, args.patch_size, args.num_iter)
         else:
-            self.test_image_loader(self.test_patient_no)
+            self.test_image_loader(self.test_patent_no)
             print('data load complete !!!, {}, N_test : {}'.format(time.time() - t1, len(self.test_image_loader.LDCT_image_name)))
             self.X = tf.placeholder(tf.float32, [None, args.patch_size, args.patch_size, args.img_channel], name = 'LDCT')
             self.Y = tf.placeholder(tf.float32, [None, args.patch_size, args.patch_size, args.img_channel], name = 'NDCT')
